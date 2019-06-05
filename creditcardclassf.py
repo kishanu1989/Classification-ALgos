@@ -1,11 +1,13 @@
 import pandas as pd
 import numpy as np
 
+#Extracting Data
 df_data = pd.read_csv('C:/Users/kibhattacharya/Desktop/GoTo Docs/ML/DataSets/creditcard.csv')
 # print(df_data.head())
 
 # print(df_data['Class'].value_counts())
 
+######################################### Upsampling #########################################
 from sklearn.utils import resample
 
 df_majority = df_data[df_data.Class == 0]  # filter condition
@@ -35,7 +37,7 @@ from sklearn.metrics import roc_auc_score
 prob_up = reg_fit.predict_proba(X)
 prob_up = [p[1] for p in prob_up]
 print("ROC Score for Upsampling",roc_auc_score(y,prob_up))
-#########################################Downsampling#########################################
+######################################### Downsampling #########################################
 
 df_down_majority = df_data[df_data.Class == 0]
 df_down_minority = df_data[df_data.Class == 1]
